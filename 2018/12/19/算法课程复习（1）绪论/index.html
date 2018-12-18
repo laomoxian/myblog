@@ -17,7 +17,7 @@
 
 可以认为算法是问题的程序化解决方案
 
-图示：123456mermaidgraph TB;问题,"> 
+图示：12345graph TB;问题--&amp;gt;算法,"> 
     <meta name="author" content="John Doe"> 
     <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -62,7 +62,7 @@
 <blockquote>
 <p>可以认为<strong>算法</strong>是问题的程序化解决方案</p>
 </blockquote>
-<h6 id="图示："><a href="#图示：" class="headerlink" title="图示："></a>图示：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mermaid</span><br><span class="line">graph TB;</span><br><span class="line">问题--&gt;算法;</span><br><span class="line">算法--&gt;computer;</span><br><span class="line">输入--&gt;computer;</span><br><span class="line">computer--&gt;输出;</span><br></pre></td></tr></table></figure>
+<h6 id="图示："><a href="#图示：" class="headerlink" title="图示："></a>图示：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph TB;</span><br><span class="line">问题--&gt;算法;</span><br><span class="line">算法--&gt;computer;</span><br><span class="line">输入--&gt;computer;</span><br><span class="line">computer--&gt;输出;</span><br></pre></td></tr></table></figure>
 <h6 id="算法的确定性："><a href="#算法的确定性：" class="headerlink" title="算法的确定性："></a>算法的确定性：</h6><ul>
 <li>算法的每一个步骤都必须没有歧义</li>
 <li>必须认真确定算法所处理的输入的值域</li>
@@ -75,7 +75,7 @@
 <h6 id="例题算法记录"><a href="#例题算法记录" class="headerlink" title="例题算法记录"></a>例题算法记录</h6><p>1、求两个数的最大公约数，欧几里得算法：gcd(m,n)=gcd(n,m mod n)</p>
 <p>2、产生一个不大于给定整数n的连续质数序列。爱拉托瑟尼筛选法：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Sieve(n)</span><br><span class="line">//</span><br><span class="line">//</span><br><span class="line">//</span><br><span class="line">课本5</span><br></pre></td></tr></table></figure>
-<h6 id="算法设计分析过程中的典型步骤"><a href="#算法设计分析过程中的典型步骤" class="headerlink" title="算法设计分析过程中的典型步骤"></a>算法设计分析过程中的典型步骤</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mermaid</span><br><span class="line">graph TB;</span><br><span class="line">理解问题--&gt;a[确定以下内容: 计算方法 , 精确或近似解法 , 算法设计技术];</span><br><span class="line">a--&gt;b[设计算法];</span><br><span class="line">b--&gt;c[正确性证明];</span><br><span class="line">c--&gt;d[分析算法];</span><br><span class="line">c--&gt;a;</span><br><span class="line">c--&gt;b;</span><br><span class="line">d--&gt;a;</span><br><span class="line">d--&gt;b;</span><br><span class="line">d--&gt;根据算法写代码;</span><br></pre></td></tr></table></figure>
+<h6 id="算法设计分析过程中的典型步骤"><a href="#算法设计分析过程中的典型步骤" class="headerlink" title="算法设计分析过程中的典型步骤"></a>算法设计分析过程中的典型步骤</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">graph TB;</span><br><span class="line">理解问题--&gt;a[确定以下内容: 计算方法 , 精确或近似解法 , 算法设计技术];</span><br><span class="line">a--&gt;b[设计算法];</span><br><span class="line">b--&gt;c[正确性证明];</span><br><span class="line">c--&gt;d[分析算法];</span><br><span class="line">c--&gt;a;</span><br><span class="line">c--&gt;b;</span><br><span class="line">d--&gt;a;</span><br><span class="line">d--&gt;b;</span><br><span class="line">d--&gt;根据算法写代码;</span><br></pre></td></tr></table></figure>
 <p>算法的输入：算法所解问题的一个实例。</p>
 <p>严格确定算法需要处理实例的范围非常重要。</p>
 
