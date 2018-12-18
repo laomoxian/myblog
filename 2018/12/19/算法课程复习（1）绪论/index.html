@@ -32,7 +32,7 @@
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">Hello World</h3>
+    <h3 class="subtitle">算法课程复习（1）绪论</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -49,22 +49,35 @@
     <div class="section">
         <div class="article">
     <div class="main">
-        <h1 class="title">Hello World</h1>
+        <h1 class="title">算法课程复习（1）绪论</h1>
         <div class="stuff">
-            <span>十二月 16, 2018</span>
+            <span>十二月 19, 2018</span>
             
 
         </div>
         <div class="content markdown">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><blockquote>
+<p><strong>算法</strong>是一系列问题的明确指令，也就是说，对于符合一定规范的输入，能够在有限时间内获得要求的输出。</p>
+</blockquote>
+<blockquote>
+<p>可以认为<strong>算法</strong>是问题的程序化解决方案</p>
+</blockquote>
+<h6 id="图示："><a href="#图示：" class="headerlink" title="图示："></a>图示：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">问题--&gt;算法</span><br><span class="line">算法--&gt;computer</span><br><span class="line">输入--&gt;computer</span><br><span class="line">computer--&gt;输出</span><br></pre></td></tr></table></figure>
+<h6 id="算法的确定性："><a href="#算法的确定性：" class="headerlink" title="算法的确定性："></a>算法的确定性：</h6><ul>
+<li>算法的每一个步骤都必须没有歧义</li>
+<li>必须认真确定算法所处理的输入的值域</li>
+</ul>
+<h6 id="算法的多样性"><a href="#算法的多样性" class="headerlink" title="算法的多样性"></a>算法的多样性</h6><ul>
+<li>同一算法可以用几种不同的形式来描述</li>
+<li>同一问题，可能存在几种不同的算法</li>
+<li>针对同一问题的算法可能基于完全不同的解题思路，而且解题速度也会显著不同</li>
+</ul>
+<h6 id="例题算法记录"><a href="#例题算法记录" class="headerlink" title="例题算法记录"></a>例题算法记录</h6><p>1、求两个数的最大公约数，欧几里得算法：gcd(m,n)=gcd(n,m mod n)</p>
+<p>2、产生一个不大于给定整数n的连续质数序列。爱拉托瑟尼筛选法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Sieve(n)</span><br><span class="line">//</span><br><span class="line">//</span><br><span class="line">//</span><br><span class="line">课本5</span><br></pre></td></tr></table></figure>
+<h6 id="算法设计分析过程中的典型步骤"><a href="#算法设计分析过程中的典型步骤" class="headerlink" title="算法设计分析过程中的典型步骤"></a>算法设计分析过程中的典型步骤</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">理解问题--&gt;a[确定以下内容: 计算方法 , 精确或近似解法 , 算法设计技术]</span><br><span class="line">a--&gt;b[设计算法]</span><br><span class="line">b--&gt;c[正确性证明]</span><br><span class="line">c--&gt;d[分析算法]</span><br><span class="line">c--&gt;a</span><br><span class="line">c--&gt;b</span><br><span class="line">d--&gt;a</span><br><span class="line">d--&gt;b</span><br><span class="line">d--&gt;根据算法写代码</span><br></pre></td></tr></table></figure>
+<p>算法的输入：算法所解问题的一个实例。</p>
+<p>严格确定算法需要处理实例的范围非常重要。</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
