@@ -31,7 +31,7 @@ title 为文,">
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">Hello World</h3>
+    <h3 class="subtitle">git学习笔记</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -48,22 +48,45 @@ title 为文,">
     <div class="section">
         <div class="article">
     <div class="main">
-        <h1 class="title">Hello World</h1>
+        <h1 class="title">git学习笔记</h1>
         <div class="stuff">
-            <span>十二月 16, 2018</span>
+            <span>三月 20, 2019</span>
             
 
         </div>
         <div class="content markdown">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <p>git(分布式版本控制系统) vs CVS/SVN(集中式版本控制系统)</p>
+<p>集中式版本控制系统：版本库集中存放于中央服务器中，在工作时，需要先从服务器获取到最新的版本，在工作完毕后把的内容更新到服务器中。必须在联网的条件下才能工作。</p>
+<p>分布式版本控制系统：没有中央服务器，没人的电脑都有完整的版本库，不需要在联网的环境下工作，版本的控制通过相互的推送修改实现。</p>
+<p>所有的版本控制系统都只能跟踪文本文件的改动，而不能跟踪二进制文件的变化。其中，word为二进制文件。 避免使用 windows的记事本来编辑任何文本文件。</p>
+<p>git 的安装</p>
+<p>在Linux上安装Git<br>1、使用 git 查看是否已安装git<br>2、sudo apt-get install git （适用Debian 、Ubuntu）</p>
+<p>在windows上安装Git<br>1、从官网下载：<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a></p>
+<p>2、安装完成后在 bit bash 或命令行输入<br>$ git config –global user.name “Your Name”<br>$ git config –global user.email “<a href="mailto:email@example.com" target="_blank" rel="noopener">email@example.com</a><br>（其中使用git config命令的–global参数，表示你这台机器上所有的Git仓库都会使用这个配置）</p>
+<p>一、创建版本库<br>版本库：又名仓库（repository），可以理解为由git管理起来的一个目录，可以跟踪每个文件的修改、删除，以便追踪历史或还原。</p>
+<p>1、在合适的地方创建一个目录：<br>如：<br>$ mkdir learngit   //创建文件夹<br>$ cd learngit      //进入文件夹<br>$ pwd              //显示路径</p>
+<p>ps:windows系统下为了避免遇到一些问题，确保目录不包含中文。</p>
+<p>2、$ git init<br>把该目录变成Git可以管理的仓库<br>(创建成功后，目录会出现.git目录)</p>
+<p>3、将文件添加到文本库。<br>例子：<br>编写readme.txt<br>$ git add readme.txt<br>$ git commit -m “wrote a readme file”<br>git commit命令中，-m后面输入的是本次提交的说明。<br>ps:可以一次提交多个文件。</p>
+<p>命令：<br>git status  查看仓库的当前状态，告诉你有文件被修改过<br>git diff &lt;文件名&gt; 查看文件的修改内容<br>git reset –hard commit_id   版本间的穿梭，其中HEAD指向的版本为当前版本<br>git log 查看提交历史<br>git reflog 查看命令历史<br>git rm 删除一个文件</p>
+<p>修改撤销：<br>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout – file。</p>
+<p>场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD <file>，就回到了场景1，第二步按场景1操作。</file></p>
+<p>场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。</p>
+<p>分支：</p>
+<p>查看分支：git branch</p>
+<p>创建分支：git branch <name></name></p>
+<p>切换分支：git checkout <name></name></p>
+<p>创建+切换分支：git checkout -b <name></name></p>
+<p>合并某分支到当前分支：git merge <name></name></p>
+<p>删除分支：git branch -d <name></name></p>
+<p>当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。</p>
+<p>解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。</p>
+<p>用git log –graph命令可以看到分支合并图。</p>
+<p>合并分支时，加上–no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并</p>
+<p>修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；</p>
+<p>当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。</p>
+<p>开发一个新feature，最好新建一个分支；</p>
+<p>如果要丢弃一个没有被合并过的分支，可以通过git branch -D <name>强行删除。</name></p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
