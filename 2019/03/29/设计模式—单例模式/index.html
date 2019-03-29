@@ -11,12 +11,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate">
     <meta name="keywords" content="ZIO,"> 
-    <meta name="description" content="开源项目地址：github
-安装：如果使用 Windows:
-
-若出现运行前几个命令出错的情况，尝试用WINDOW+X中的WINDOWS POWERSHELL(管理员)执行
-
-12345678910,"> 
+    <meta name="description" content="这几天给笔记本加了个固态，原本以为得重装系统，后来发现可以使用分区助手这个软件对系统进行迁移。
+软件下载：官网
+具体实现：    1、打开软件        2、选择左边菜单 “ 迁移系统到固态硬盘,"> 
     <meta name="author" content="John Doe"> 
     <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
     <link rel="icon" href="/img/blog.png"> 
@@ -78,6 +75,11 @@
 <p>4、static静态代码块实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton&#123;</span><br><span class="line">    private Singleton&#123;&#125;</span><br><span class="line">    private static Singleton singleton = null;</span><br><span class="line">    private Singleton()&#123;&#125;</span><br><span class="line">    staic&#123;</span><br><span class="line">        singleton = new Singleton();</span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        return singleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>属于饿汉式写法的变种</p>
 <p>5、用枚举实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">enum Singleton&#123;</span><br><span class="line">    INSTANCEL</span><br><span class="line">    public void otherMethods()&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>枚举作为Singleton的实现方式，相对于其他方式尤其是类似的饿汉模式主要有以下优点：</p>
+<ul>
+<li>代码简单</li>
+<li>自由序列化</li>
+</ul>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
