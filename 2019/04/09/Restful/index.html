@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="" class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title></title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="ZIO,"> 
+    <meta name="description" content="
+
+"> 
+    <meta name="author" content="Jing"> 
+    <link rel="alternative" href="atom.xml" title="" type="application/atom+xml"> 
+    <link rel="icon" href="/img/blog.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+</html>
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">Restful架构（一）</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">Restful架构（一）</h1>
+        <div class="stuff">
+            <span>四月 09, 2019</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <a id="more"></a>
+<h1 id="RESTful架构"><a href="#RESTful架构" class="headerlink" title="RESTful架构"></a>RESTful架构</h1><p> REST全称是Representational State Transfer，中文意思是表述性状态转移。它首次出现在2000年Roy Fielding的博士论文中，Roy Fielding是 HTTP 规范的主要编写者之一。 他在论文中提到:“我这篇文章的写作目的，就是想在符合架构原理的前提下，理解和评估以网络为基础的应用软件的架构设计，得到一个功能强、性能好、适宜通信的架构。REST指的是一组架构约束条件和原则。” 如果一个架构符合REST的约束条件和原则，我们就称它为RESTful架构。</p>
+<h2 id="Restful"><a href="#Restful" class="headerlink" title="Restful"></a>Restful</h2><ul>
+<li>本质：一种软件架构风格</li>
+<li>核心：面向资源</li>
+<li>解决问题：降低开发的复杂性；提高系统的可伸缩性</li>
+<li>Restful资源层Resource：文本、图片、服务、音频等等</li>
+<li>Restful表现层Representational<ul>
+<li>文本：txt、html、xml、json、二进制</li>
+<li>图片：jpg、png</li>
+<li>Case：book是一个资源，获取不同的格式</li>
+<li>http协议的content-type和accept</li>
+</ul>
+</li>
+<li>Restful状态转化State Transfer<ul>
+<li>幂等性：每次HTTP请求相同的参数，相同的URI，产生的结果是相同的</li>
+<li>GET</li>
+<li>POST</li>
+<li>PUT</li>
+<li>DELETE</li>
+</ul>
+</li>
+<li>设计概念和准则：<ul>
+<li>网络上的所有事物都可以被抽象为资源。</li>
+<li>每一个资源都有唯一的资源标识，对资源的操作不会改变这些标识。</li>
+<li>所有的操作都是无状态的。</li>
+</ul>
+</li>
+<li><p>资源：网络上的一个实体，或者说是网络上的一个具体信息。<br><code>schema://host[:port]/path [?query-string][#anchor]</code></p>
+<ul>
+<li><p>schema：指定底层使用的协议（例如：http，https，ftp）</p>
+</li>
+<li><p>host：服务器的IP地址或者域名</p>
+</li>
+<li><p>port：服务器端口，默认为80</p>
+</li>
+<li><p>path：访问资源的路径</p>
+</li>
+<li><p>query-string：发送给http服务器的数据</p>
+</li>
+<li><p>anchor：锚 </p>
+<blockquote>
+<p>锚点：使用命名锚记可以在文档中设置标记，这些标记通常放在文档的特定主题处或顶部。然后可以创建到这些命名锚记的链接，这些链接可快速将访问者带到指定位置。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="RESTful与SOAP"><a href="#RESTful与SOAP" class="headerlink" title="RESTful与SOAP"></a>RESTful与SOAP</h2><h6 id="SOAP-WebService"><a href="#SOAP-WebService" class="headerlink" title="SOAP WebService"></a>SOAP WebService</h6><p>WebService：是一种跨编程语言和操作系统平台的远程调用技术。</p>
+<p>WebService通过HTTP协议发送请求和接收结果时采用XML格式封装，并增加了一些特点的HTTP消息头，这些特定的HTTP消息头和XML内容格式就是SOAP协议。</p>
+<h6 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h6><ul>
+<li><p><strong>效率与易用性</strong><br>  SOAP由于各种需求不断扩充其本身协议的内容，导致在SOAP处理方面的性能有所下降。同时在易用性方面以及学习成本上也有所增加。<br>  RESTful由于其面向资源接口设计以及操作抽象简化了开发者的不良设计，同时也最大限度的利用了http最初的应用协议设计理念。</p>
+</li>
+<li><p><strong>安全性</strong><br>  RESTful对于资源型服务接口来说很合适，同时特别适合对效率要求很高，但是对于安全要求不高的场景。<br>  SOAP的成熟性可以给需要提供给多开发语言，对于安全性要求较高的接口设计带来便利。所以我觉得纯粹说什么设计模式将会占据主导地位没有什么意义，关键还是看应用场景。</p>
+</li>
+</ul>
+<h6 id="如何设计RESTful-API"><a href="#如何设计RESTful-API" class="headerlink" title="如何设计RESTful API"></a>如何设计RESTful API</h6><p><a href="">restful架构（二）——api设计</a></p>
+<blockquote>
+<p>摘抄自<br> <a href="https://www.jianshu.com/p/21622d81ab26" target="_blank" rel="noopener">简书文章【HTTP与RESTful】</a><br> <a href="https://mccxj.github.io/blog/20130530_introduce-to-rest.html" target="_blank" rel="noopener">文章【理解RESTFul架构】</a><br> <strong>…待补充 </strong></p>
+</blockquote>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="http://link.hhtjim.com/163/5146554.mp3"></li>
+                    
+                        <li title="1" data-url="http://link.hhtjim.com/qq/001faIUs4M2zna.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci="" data-cs="" data-r="" data-o="" data-a="" data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":37.5,"height":75},"mobile":{"show":true}});</script></body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

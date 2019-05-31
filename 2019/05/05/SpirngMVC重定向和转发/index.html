@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<html lang="" class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title></title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="ZIO,"> 
+    <meta name="description" content="
+
+"> 
+    <meta name="author" content="Jing"> 
+    <link rel="alternative" href="atom.xml" title="" type="application/atom+xml"> 
+    <link rel="icon" href="/img/blog.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+</html>
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">SpirngMVC重定向和转发</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">SpirngMVC重定向和转发</h1>
+        <div class="stuff">
+            <span>五月 05, 2019</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <a id="more"></a>
+<h4 id="转发和重定向的区别："><a href="#转发和重定向的区别：" class="headerlink" title="转发和重定向的区别："></a>转发和重定向的区别：</h4><blockquote>
+<p>转发是服务器行为，重定向是客户端行为。</p>
+</blockquote>
+<ul>
+<li>转发过程：客户端发送请求-&gt;服务器接收请求-&gt;调用内部方法完成请求处理和转发操作-&gt;将目标资源发送给客户端<blockquote>
+<p>转发路径必须是同一个web容器下的url，不能转向到其他web路径上去，中间传递的还是自己容器内的request，在浏览器路径栏上仍是原来访问的路径。</p>
+</blockquote>
+</li>
+<li>重定向过程：客户端发送请求 -&gt; 服务器接收请求 -&gt; 发送302状态码响应和新的location给客户端 -&gt; 客户端收到响应，发现是302状态码，自动发一个新的请求到响应所给的location -&gt; 服务器接收请求 -&gt; 调用内部方法完成请求处理和转发操作 -&gt; 将目标资源发送给客户端<blockquote>
+<p>location可以重定向带任意的url，浏览器发送了两次请求，中间没有request传递。在浏览器可以发现地址的变化。<br> 重定向行为是浏览器做了至少两次的访问请求的。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="SpringMVC中转发和重定向的代码示例"><a href="#SpringMVC中转发和重定向的代码示例" class="headerlink" title="SpringMVC中转发和重定向的代码示例"></a>SpringMVC中转发和重定向的代码示例</h4><pre><code>import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+@Controller
+public class HelloController {
+
+    /**
+     * 转发形式
+     * @param name
+     * @param model
+     * @return
+     */
+    @RequestMapping(&quot;/helloForward&quot;)
+    public String helloForward(@RequestParam(value=&quot;name&quot;, required=false, defaultValue=&quot;World2017&quot;) String name, Model model) {
+        model.addAttribute(&quot;name&quot;, name);
+        return &quot;hello&quot;;
+    }
+
+
+
+    @RequestMapping(&quot;/hello&quot;)
+    public String hello() {        
+        return &quot;hello&quot;;       
+    }
+
+    /**
+     * 使用RedirectAttributes类
+     * @param name
+     * @param redirectAttributes
+     * @return
+     */
+    @RequestMapping(&quot;/helloRedirect&quot;)
+    public String helloRedirect(@RequestParam(value=&quot;name&quot;, required=false ) String name, RedirectAttributes redirectAttributes) {
+
+        redirectAttributes.addFlashAttribute(&quot;name&quot;, name);
+
+        return &quot;redirect:/hello&quot;;
+    }
+
+
+    @RequestMapping(&quot;/hello2&quot;)
+    public String hello2(Model model,HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+        model.addAttribute(&quot;name&quot;,session.getAttribute(&quot;name&quot;));
+        return &quot;hello&quot;;      
+    }
+
+    /**
+     * 常规做法，重定向之前把参数放进Session中，在重定向之后的controller中把参数从Session中取出并放进ModelAndView
+     * @param name
+     * @param request
+     * @return
+     */
+    @RequestMapping(&quot;/helloRedirect2&quot;)
+    public String helloRedirect2(@RequestParam(value=&quot;name&quot;, required=false ) String name, HttpServletRequest request) {
+
+        request.getSession().setAttribute(&quot;name&quot;, name);
+
+        return &quot;redirect:/hello2&quot;;
+    }
+
+
+}
+</code></pre><h4 id="使用重定向和转发的情况"><a href="#使用重定向和转发的情况" class="headerlink" title="使用重定向和转发的情况"></a>使用重定向和转发的情况</h4><ul>
+<li>前后两个页面 有数据传递 用请求转发，没有则用重定向。</li>
+<li>做增、删、改的时候最好用重定向，因为如果不用重定向，每次刷新页面就相当于再请求一次，就可能会做额外的操作，导致数据不对。</li>
+</ul>
+<h4 id="如何使用重定向传递数据"><a href="#如何使用重定向传递数据" class="headerlink" title="如何使用重定向传递数据"></a>如何使用重定向传递数据</h4><ul>
+<li>使用session，但需要在传递后删除</li>
+<li>在请求的url上带上参数，如 “test.com?username=hello&amp;password=hello”</li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="http://link.hhtjim.com/163/5146554.mp3"></li>
+                    
+                        <li title="1" data-url="http://link.hhtjim.com/qq/001faIUs4M2zna.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci="" data-cs="" data-r="" data-o="" data-a="" data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":37.5,"height":75},"mobile":{"show":true}});</script></body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
