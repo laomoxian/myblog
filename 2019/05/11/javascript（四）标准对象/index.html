@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<html lang="" class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title></title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="ZIO,"> 
+    <meta name="description" content="
+
+"> 
+    <meta name="author" content="Jing"> 
+    <link rel="alternative" href="atom.xml" title="" type="application/atom+xml"> 
+    <link rel="icon" href="/img/blog.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+</html>
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">javascript学习笔记（四）</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">javascript学习笔记（四）</h1>
+        <div class="stuff">
+            <span>五月 11, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/js/">js</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="javascrit（四）标准对象"><a href="#javascrit（四）标准对象" class="headerlink" title="javascrit（四）标准对象"></a>javascrit（四）标准对象</h1><!-- TOC -->
+<ul>
+<li><a href="#javascrit四标准对象">javascrit（四）标准对象</a><ul>
+<li><a href="#math对象">Math对象</a><ul>
+<li><a href="#静态属性">静态属性</a></li>
+<li><a href="#静态方法">静态方法</a></li>
+</ul>
+</li>
+<li><a href="#date对象">Date对象</a><ul>
+<li><a href="#静态方法">静态方法：</a></li>
+<li><a href="#实例方法">实例方法</a></li>
+</ul>
+</li>
+<li><a href="#regexp对象">RegExp对象</a><ul>
+<li><a href="#正则表达式">正则表达式</a></li>
+<li><a href="#regexp">RegExp</a></li>
+</ul>
+</li>
+<li><a href="#json对象">json对象</a><ul>
+<li><a href="#json格式">json格式</a></li>
+<li><a href="#json对象-1">json对象</a><ul>
+<li><a href="#jsonstringify">JSON.stringify()</a></li>
+<li><a href="#jsonparse">JSON.parse()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h2 id="Math对象"><a href="#Math对象" class="headerlink" title="Math对象"></a>Math对象</h2><h3 id="静态属性"><a href="#静态属性" class="headerlink" title="静态属性"></a>静态属性</h3><ul>
+<li>Math.E：常数e。</li>
+<li>Math.LN2：2 的自然对数。</li>
+<li>Math.LN10：10 的自然对数。</li>
+<li>Math.LOG2E：以 2 为底的e的对数。</li>
+<li>Math.LOG10E：以 10 为底的e的对数。</li>
+<li>Math.PI：常数π。</li>
+<li>Math.SQRT1_2：0.5 的平方根。</li>
+<li>Math.SQRT2：2 的平方根。<h3 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h3></li>
+<li>Math.abs()：绝对值</li>
+<li>Math.ceil()：向上取整</li>
+<li>Math.floor()：向下取整</li>
+<li>Math.max()：最大值</li>
+<li>Math.min()：最小值</li>
+<li>Math.pow()：指数运算</li>
+<li>Math.sqrt()：平方根</li>
+<li>Math.log()：自然对数</li>
+<li>Math.exp()：e的指数</li>
+<li>Math.round()：四舍五入</li>
+<li>Math.random()：随机数</li>
+</ul>
+<p>三角函数方法：</p>
+<ul>
+<li>Math.sin()：返回参数的正弦（参数为弧度值）</li>
+<li>Math.cos()：返回参数的余弦（参数为弧度值）</li>
+<li>Math.tan()：返回参数的正切（参数为弧度值）</li>
+<li>Math.asin()：返回参数的反正弦（返回值为弧度值）</li>
+<li>Math.acos()：返回参数的反余弦（返回值为弧度值）</li>
+<li>Math.atan()：返回参数的反正切（返回值为弧度值）</li>
+</ul>
+<h2 id="Date对象"><a href="#Date对象" class="headerlink" title="Date对象"></a>Date对象</h2><ul>
+<li>作为普通函数直接调用：<code>Date()</code>，返回当前时间，倘若有参数，返回的也是当前时间。</li>
+<li>使用构造方法构造Date对象：<br><code>`</code><br>// 参数为时间零点开始计算的毫秒数<br>new Date(1378218728000)<br>// Tue Sep 03 2013 22:32:08 GMT+0800 (CST)</li>
+</ul>
+<p>// 参数为日期字符串<br>new Date(‘January 6, 2013’);<br>// Sun Jan 06 2013 00:00:00 GMT+0800 (CST)</p>
+<p>// 参数为多个整数，<br>// 代表年、月、日、小时、分钟、秒、毫秒<br>new Date(2013, 0, 1, 0, 0, 0, 0)<br>// Tue Jan 01 2013 00:00:00 GMT+0800 (CST)</p>
+<p>//只传入年份作为参数：<br>new Date(2013) //2013会被当作毫秒数<br>//正确写法：<br>new Date(2013, 0)<br>// Tue Jan 01 2013 00:00:00 GMT+0800 (CST)<br>new Date(2013, 0, 1)<br>// Tue Jan 01 2013 00:00:00 GMT+0800 (CST)<br>new Date(2013, 0, 1, 0)<br>// Tue Jan 01 2013 00:00:00 GMT+0800 (CST)<br>new Date(2013, 0, 1, 0, 0, 0, 0)<br>// Tue Jan 01 2013 00:00:00 GMT+0800 (CST)</p>
+<pre><code>
+### 静态方法：
+&lt;table border=&quot;1&quot;&gt;
+    &lt;tr&gt;
+       &lt;td&gt;Date.now() &lt;/td&gt; &lt;td&gt;Date.now方法返回当前时间距离时间零点（1970年1月1日 00:00:00 UTC）的毫秒数，相当于 Unix 时间戳乘以1000。&lt;/td&gt; 
+    &lt;/tr&gt;
+    &lt;tr&gt;
+       &lt;td&gt;Date.parse() &lt;/td&gt; &lt;td&gt;Date.parse方法用来解析日期字符串，返回该时间距离时间零点（1970年1月1日 00:00:00）的毫秒数。如果解析失败，返回NaN。&lt;/td&gt; 
+    &lt;/tr&gt;
+    &lt;tr&gt;
+       &lt;td&gt;Date.UTC() &lt;/td&gt; &lt;td&gt;Date.UTC方法接受年、月、日等变量作为参数，返回该时间距离时间零点（1970年1月1日 00:00:00 UTC）的毫秒数。&lt;/td&gt; 
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+### 实例方法
+&lt;table border=&quot;1&quot;&gt;
+    &lt;tr&gt;
+       &lt;td&gt;Date.prototype.valueOf()&lt;/td&gt; &lt;td&gt;valueOf方法返回实例对象距离时间零点（1970年1月1日00:00:00 UTC）对应的毫秒数，该方法等同于getTime方法。&lt;/td&gt; 
+    &lt;/tr&gt;
+    &lt;tr&gt;
+       &lt;td&gt;Date.prototype.toString()&lt;/td&gt; &lt;td&gt;toString方法返回一个完整的日期字符串。&lt;/td&gt; 
+    &lt;/tr&gt;
+    &lt;tr&gt;
+       &lt;td&gt;Date.prototype.toUTCString() &lt;/td&gt; &lt;td&gt;toUTCString方法返回对应的 UTC 时间，也就是比北京时间晚8个小时。。&lt;/td&gt; 
+    &lt;/tr&gt;
+    &lt;tr&gt;
+       &lt;td&gt;Date.prototype.toISOString()&lt;/td&gt; &lt;td&gt;toISOString方法返回对应时间的 ISO8601 写法。&lt;/td&gt; 
+    &lt;/tr&gt;
+    &lt;tr&gt;
+       &lt;td&gt;Date.prototype.toJSON()&lt;/td&gt; &lt;td&gt;toJSON方法返回一个符合 JSON 格式的 ISO 日期字符串，与toISOString方法的返回结果完全相同。&lt;/td&gt; 
+    &lt;/tr&gt;
+    &lt;tr&gt;
+       &lt;td&gt;Date.prototype.toDateString() &lt;/td&gt; &lt;td&gt;toDateString方法返回日期字符串（不含小时、分和秒）。&lt;/td&gt; 
+    &lt;/tr&gt;
+    &lt;tr&gt;
+       &lt;td&gt;Date.prototype.toTimeString() &lt;/td&gt; &lt;td&gt;toTimeString方法返回时间字符串（不含年月日）。&lt;/td&gt; 
+    &lt;/tr&gt;
+    &lt;tr&gt;
+       &lt;td&gt;Date.prototype.toLocaleString()&lt;/td&gt; &lt;td&gt;完整的本地时间。&lt;/td&gt; 
+    &lt;/tr&gt;
+    &lt;tr&gt;
+       &lt;td&gt;Date.prototype.toLocaleDateString() &lt;/td&gt; &lt;td&gt;本地日期（不含小时、分和秒）。&lt;/td&gt; 
+    &lt;/tr&gt;
+    &lt;tr&gt;
+       &lt;td&gt;Date.prototype.toLocaleTimeString() &lt;/td&gt; &lt;td&gt;本地时间（不含年月日）。&lt;/td&gt; 
+    &lt;/tr&gt;
+    &lt;tr&gt;
+       &lt;td&gt;一系列get方法 &lt;/td&gt; &lt;td&gt;获取实例对象某个方面的值&lt;/td&gt; 
+    &lt;/tr&gt;
+    &lt;tr&gt;
+       &lt;td&gt;一系列set方法 &lt;/td&gt; &lt;td&gt;用来设置实例对象的各个方面&lt;/td&gt; 
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+## RegExp对象
+&gt; RegExp对象提供正则表示式的功能。
+### 正则表达式
+学习-&gt;[菜鸟教程](https://www.runoob.com/js/js-regexp.html)
+### RegExp
+创建正则表达式：
+</code></pre><p>var re1 = /ABC-001/;<br>var re2 = new RegExp(‘ABC\-001’);</p>
+<p>re1; // /ABC-001/<br>re2; // /ABC-001/</p>
+<pre><code>- RegExp对象的test()方法用于测试给定的字符串是否符合条件。
+</code></pre><p>var re = /^\d{3}-\d{3,8}$/;<br>re.test(‘010-12345’); // true<br>re.test(‘010-1234x’); // false</p>
+<pre><code>- RegExp对象的exec方法，用来返回匹配结果。如果发现匹配，就返回一个数组，成员是匹配成功的子字符串，否则返回null。
+</code></pre><p>var s = ‘_x_x’;<br>var r1 = /x/;<br>var r2 = /y/;</p>
+<p>r1.exec(s) // [“x”]<br>r2.exec(s) // null</p>
+<pre><code>- 字符串实例对象的match方法对字符串进行正则匹配，返回匹配结果。
+</code></pre><p>var s = ‘_x_x’;<br>var r1 = /x/;<br>var r2 = /y/;</p>
+<p>s.match(r1) // [“x”]<br>s.match(r2) // null</p>
+<p>//如果正则表达式带有g修饰符，则该方法与正则对象的exec方法行为不同，会一次性返回所有匹配成功的结果。<br>var s = ‘abba’;<br>var r = /a/g;</p>
+<p>s.match(r) // [“a”, “a”]<br>r.exec(s) // [“a”]</p>
+<pre><code>
+- 字符串对象的search方法，返回第一个满足条件的匹配结果在整个字符串中的位置。如果没有任何匹配，则返回-1。
+</code></pre><p>‘_x_x’.search(/x/)<br>// 1</p>
+<pre><code>- 字符串对象的replace方法可以替换匹配的值。它接受两个参数，第一个是正则表达式，表示搜索模式，第二个是替换的内容。
+</code></pre><p>‘aaa’.replace(‘a’, ‘b’) // “baa”<br>‘aaa’.replace(/a/, ‘b’) // “baa”<br>‘aaa’.replace(/a/g, ‘b’) // “bbb”</p>
+<pre><code>- 字符串对象的split方法按照正则规则分割字符串，返回一个由分割后的各个部分组成的数组。
+
+该方法接受两个参数，第一个参数是正则表达式，表示分隔规则，第二个参数是返回数组的最大成员数。
+</code></pre><p>str.split(separator, [limit]);</p>
+<p>// 非正则分隔<br>‘a,  b,c, d’.split(‘,’)<br>// [ ‘a’, ‘  b’, ‘c’, ‘ d’ ]</p>
+<p>// 正则分隔，去除多余的空格<br>‘a,  b,c, d’.split(/, */)<br>// [ ‘a’, ‘b’, ‘c’, ‘d’ ]</p>
+<p>// 指定返回数组的最大成员<br>‘a,  b,c, d’.split(/, */, 2)<br>[ ‘a’, ‘b’ ]</p>
+<pre><code>## json对象
+### json格式
+&gt; JSON 格式（JavaScript Object Notation 的缩写）是一种用于数据交换的文本格式，2001年由 Douglas Crockford 提出，目的是取代繁琐笨重的 XML 格式。&lt;br&gt;
+相比 XML 格式，JSON 格式有两个显著的优点：书写简单，一目了然；符合 JavaScript 原生语法，可以由解释引擎直接处理，不用另外添加解析代码。所以，JSON 迅速被接受，已经成为各大网站交换数据的标准格式，并被写入标准。&lt;br&gt;
+每个 JSON 对象就是一个值，可能是一个数组或对象，也可能是一个原始类型的值。总之，只能是一个值，不能是两个或更多的值。
+
+- 复合类型的值只能是数组或对象，不能是函数、正则表达式对象、日期对象。
+
+- 原始类型的值只有四种：字符串、数值（必须以十进制表示）、布尔值和null （不能使用NaN, Infinity, -Infinity和undefined）。
+
+- 字符串必须使用双引号表示，不能使用单引号。
+
+- 对象的键名必须放在双引号里面。
+
+- 数组或对象最后一个成员的后面，不能加逗号。
+
+### json对象
+&gt; JSON对象是 JavaScript 的原生对象，用来处理 JSON 格式数据。它有两个静态方法：JSON.stringify()和JSON.parse()。
+#### JSON.stringify()
+&gt; JSON.stringify方法用于将一个值转为 JSON 字符串。该字符串符合 JSON 格式，并且可以被JSON.parse方法还原。
+</code></pre><p>JSON.stringify(‘abc’) // “”abc””<br>JSON.stringify(1) // “1”<br>JSON.stringify(false) // “false”<br>JSON.stringify([]) // “[]”<br>JSON.stringify({}) // “{}”</p>
+<p>JSON.stringify([1, “false”, false])<br>// ‘[1,”false”,false]’</p>
+<p>JSON.stringify({ name: “张三” })<br>// ‘{“name”:”张三”}’<br><code>`</code></p>
+<ul>
+<li>对于原始类型的字符串，转换结果会带双引号</li>
+<li>如果对象的属性是undefined、函数或 XML 对象，该属性会被JSON.stringify过滤</li>
+<li>如果数组的成员是undefined、函数或 XML 对象，则这些值被转成null</li>
+<li>正则对象会被转成空对象</li>
+<li>JSON.stringify方法会忽略对象的不可遍历的属性 <em>(目前不是很懂)</em></li>
+<li>JSON.stringify方法还可以接受一个数组，作为第二个参数，指定需要转成字符串的属性</li>
+<li>第二个参数还可以是一个函数，用来更改JSON.stringify的返回值。</li>
+<li>JSON.stringify还可以接受第三个参数，用于增加返回的 JSON 字符串的可读性。如果是数字，表示每个属性前面添加的空格（最多不超过10个）；如果是字符串（不超过10个字符），则该字符串会添加在每行前面。</li>
+<li>如果参数对象有自定义的toJSON方法，那么JSON.stringify会使用这个方法的返回值作为参数，而忽略原对象的其他属性。</li>
+<li>toJSON方法的一个应用是，将正则对象自动转为字符串。因为JSON.stringify默认不能转换正则对象，但是设置了toJSON方法以后，就可以转换正则对象了。</li>
+</ul>
+<h4 id="JSON-parse"><a href="#JSON-parse" class="headerlink" title="JSON.parse()"></a>JSON.parse()</h4><blockquote>
+<p>JSON.parse方法用于将 JSON 字符串转换成对应的值。</p>
+<ul>
+<li>如果传入的字符串不是有效的 JSON 格式，JSON.parse方法将报错。</li>
+<li>JSON.parse方法可以接受一个处理函数，作为第二个参数，用法与JSON.stringify方法类似。</li>
+</ul>
+</blockquote>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="http://link.hhtjim.com/163/5146554.mp3"></li>
+                    
+                        <li title="1" data-url="http://link.hhtjim.com/qq/001faIUs4M2zna.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci="" data-cs="" data-r="" data-o="" data-a="" data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":37.5,"height":75},"mobile":{"show":true}});</script></body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

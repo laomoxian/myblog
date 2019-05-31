@@ -28,7 +28,7 @@
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">vscode打开多个项目的方法</h3>
+    <h3 class="subtitle">javascript学习笔记（四）</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -45,34 +45,98 @@
     <div class="section">
         <div class="article">
     <div class="main">
-        <h1 class="title">vscode打开多个项目的方法</h1>
+        <h1 class="title">javascript学习笔记（四）</h1>
         <div class="stuff">
-            <span>五月 28, 2019</span>
+            <span>五月 31, 2019</span>
             
-  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/vscode/">vscode</a></li></ul>
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/js/">js</a></li></ul>
 
 
         </div>
         <div class="content markdown">
-            <a id="more"></a>
-<p>由于vscode在打开一个新的文件夹的时候，会覆盖原来的窗口导致无法打开多个项目。</p>
-<p>解决方法：</p>
-<p>1、多个窗口打开多个项目</p>
-<p>使用快捷键 ctrl + shift + n 打开新的窗口</p>
-<p>2、一个窗口打开多个项目</p>
+            <h1 id="javascrit（五）面向对象编程"><a href="#javascrit（五）面向对象编程" class="headerlink" title="javascrit（五）面向对象编程"></a>javascrit（五）面向对象编程</h1><!-- TOC -->
 <ul>
-<li>将要打开的多个项目添加到同一个工作区</li>
+<li><a href="#javascrit五面向对象编程">javascrit（五）面向对象编程</a><ul>
+<li><a href="#对象">对象</a></li>
+<li><a href="#构造函数">构造函数</a></li>
+<li><a href="#new-命令">new 命令</a><ul>
+<li><a href="#基本用法">基本用法</a></li>
+<li><a href="#基本原理">基本原理</a></li>
 </ul>
-<p><img src="/vscode打开多个项目的方法/20190528112651471.png" alt=""></p>
-<p><img src="/vscode打开多个项目的方法/20190528112729781.png" alt=""></p>
+</li>
+<li><a href="#objectcreate-创建实例对象">Object.create() 创建实例对象</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><ul>
+<li>对象是单个实物的抽象</li>
+<li>对象是一个容器，封装了属性和方法<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2></li>
+</ul>
+<p>JavaScript 语言使用构造函数（constructor）作为对象的模板。所谓”构造函数”，就是专门用来生成实例对象的函数。它就是对象的模板，描述实例对象的基本结构。一个构造函数，可以生成多个实例对象，这些实例对象都有相同的结构。</p>
+<pre><code>var Vehicle = function () {
+  this.price = 1000;
+};
+</code></pre><p>区别于普通函数，构造函数的第一个字母通常大写。</p>
+<p>构造函数的特点有两个。</p>
 <ul>
-<li>另存为工作区</li>
+<li>函数体内部使用了this关键字，代表了所要生成的对象实例。</li>
+<li>生成对象的时候，必须使用new命令。</li>
 </ul>
-<p><img src="/vscode打开多个项目的方法/20190528112825001.png" alt=""></p>
+<h2 id="new-命令"><a href="#new-命令" class="headerlink" title="new 命令"></a>new 命令</h2><h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>1、执行构造函数，返回一个实例</p>
+<pre><code>var Vehicle = function (p) {
+  this.price = p;
+};
+
+var v = new Vehicle();
+v.price // p
+</code></pre><p>2、不使用new调用构造函数的情况</p>
+<pre><code>var Vehicle = function (){
+  this.price = 1000;
+};
+
+var v = Vehicle();
+v // undefined
+price // 1000
+</code></pre><p>3、保证构造方法与new命令一起使用的解决方法：</p>
 <ul>
-<li>第二次要打开工作区时，打开生成的工作区文件</li>
+<li>构造函数内部使用严格模式,在调用构造函数时如果没有使用new，会因为this无法指向全局对象而报错。<br><code>`</code><br>function Fubar(foo, bar){<br>‘use strict’;<br>this._foo = foo;<br>this._bar = bar;<br>}</li>
 </ul>
-<p><img src="/vscode打开多个项目的方法/20190528112931854.png" alt=""></p>
+<p>Fubar()<br>// TypeError: Cannot set property ‘_foo’ of undefined</p>
+<pre><code>- 在构造函数内部判断是否使用new命令，如果发现没有使用，则直接返回一个实例对象。
+</code></pre><p>function Fubar(foo, bar) {<br>  if (!(this instanceof Fubar)) {<br>    return new Fubar(foo, bar);<br>  }</p>
+<p>  this._foo = foo;<br>  this._bar = bar;<br>}</p>
+<p>Fubar(1, 2)._foo // 1<br>(new Fubar(1, 2))._foo // 1</p>
+<pre><code>
+- 使用new.target
+
+函数内部可以使用new.target属性。如果当前函数是new命令调用，new.target指向当前函数，否则为undefined。
+
+</code></pre><p>function f() {<br>  console.log(new.target === f);<br>}</p>
+<p>f() // false<br>new f() // true</p>
+<pre><code>
+### 基本原理
+1、使用new命令时，它后面的函数依次执行下面的步骤。
+
+- 创建一个空对象，作为将要返回的对象实例。
+- 将这个空对象的原型，指向构造函数的prototype属性。
+- 将这个空对象赋值给函数内部的this关键字。
+- 开始执行构造函数内部的代码。
+
+2、当构造函数有return时，若后面接的是对象，则返回该对象，否则则返回生成的this对象。
+
+3、new 命令简化的内部流程，可以用下面的代码表示:
+</code></pre><p>function _new(/<em> 构造函数 </em>/ constructor, /<em> 构造函数参数 </em>/ params) {<br>  // 将 arguments 对象转为数组<br>  var args = [].slice.call(arguments);<br>  // 取出构造函数<br>  var constructor = args.shift();<br>  // 创建一个空对象，继承构造函数的 prototype 属性<br>  var context = Object.create(constructor.prototype);<br>  // 执行构造函数<br>  var result = constructor.apply(context, args);<br>  // 如果返回结果是对象，就直接返回，否则返回 context 对象<br>  return (typeof result === ‘object’ &amp;&amp; result != null) ? result : context;<br>}</p>
+<p>// 实例<br>var actor = _new(Person, ‘张三’, 28);</p>
+<pre><code>
+## Object.create() 创建实例对象
+以现有对象作为模板生成新的实例对象时，使用Object.create()方法。
+
+例子中，person1为person2的模板：
+
+</code></pre><p>var person1 = {<br>  name: ‘张三’,<br>  age: 38,<br>  greeting: function() {<br>    console.log(‘Hi! I\’m ‘ + this.name + ‘.’);<br>  }<br>};</p>
+<p>var person2 = Object.create(person1);</p>
+<p>person2.name // 张三<br>person2.greeting() // Hi! I’m 张三.<br><code>`</code></p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">

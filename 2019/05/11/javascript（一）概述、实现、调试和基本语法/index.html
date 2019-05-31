@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html lang="" class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title></title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="ZIO,"> 
+    <meta name="description" content="
+
+"> 
+    <meta name="author" content="Jing"> 
+    <link rel="alternative" href="atom.xml" title="" type="application/atom+xml"> 
+    <link rel="icon" href="/img/blog.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+</html>
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">javascript学习笔记（一）</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">javascript学习笔记（一）</h1>
+        <div class="stuff">
+            <span>五月 11, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/js/">js</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="javascript（一）概述、实现、调试和基本语法"><a href="#javascript（一）概述、实现、调试和基本语法" class="headerlink" title="javascript（一）概述、实现、调试和基本语法"></a>javascript（一）概述、实现、调试和基本语法</h1><!-- TOC -->
+<ul>
+<li><a href="#javascript一概述实现调试和基本语法">javascript（一）概述、实现、调试和基本语法</a><ul>
+<li><a href="#概述">概述</a></li>
+<li><a href="#实现">实现</a></li>
+<li><a href="#调试">调试</a><ul>
+<li><a href="#以chrome为例">以Chrome为例</a></li>
+</ul>
+</li>
+<li><a href="#基本语法">基本语法</a><ul>
+<li><a href="#语句">语句：</a></li>
+<li><a href="#代码块">代码块：</a></li>
+<li><a href="#注释">注释：</a></li>
+<li><a href="#对代码进行拆行">对代码进行拆行：</a></li>
+<li><a href="#条件判断">条件判断：</a></li>
+<li><a href="#循环">循环：</a></li>
+</ul>
+</li>
+<li><a href="#待补充">待补充：</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<p>JavaScript 是世界上最流行的编程语言。<br>这门语言可用于 HTML 和 web，更可广泛用于服务器、PC、笔记本电脑、平板电脑和智能手机等设备。</p>
+<ul>
+<li>JavaScript 是脚本语言</li>
+<li>JavaScript 是一种轻量级的编程语言。</li>
+<li>JavaScript 是可插入 HTML 页面的编程代码。</li>
+<li>JavaScript 插入 HTML 页面后，可由所有的现代浏览器执行。</li>
+</ul>
+</blockquote>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><ul>
+<li>JavaScript代码可以直接嵌在网页的任何地方，不过通常我们都把JavaScript代码放到<code>&lt;head&gt;</code>中；<pre><code>&lt;html&gt;
+&lt;head&gt;
+&lt;script&gt;
+  alert(&#39;Hello, world&#39;);
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+...
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></li>
+<li>可以把JavaScript代码放到一个单独的.js文件，然后在HTML中通过<code>&lt;script src=&quot;...&quot;&gt;&lt;/script&gt;</code>引入这个文件，这样子做有利于维护代码，且多个页面可以同时引入同一个js文件。<pre><code>&lt;html&gt;
+&lt;head&gt;
+&lt;script src=&quot;/static/js/example.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+...
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><h3 id="以Chrome为例"><a href="#以Chrome为例" class="headerlink" title="以Chrome为例"></a>以Chrome为例</h3>在浏览器按F12进入开发者模式，便可以在控制台编写javascript代码了。</li>
+</ul>
+<p><img src="images/2019-05-07-20-59-08.png" alt=""></p>
+<p>例子：</p>
+<p><img src="images/2019-05-07-21-01-25.png" alt=""></p>
+<blockquote>
+<p>console.log(x); 语句可以显示变量的内容。</p>
+</blockquote>
+<h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><ul>
+<li>JavaScript的语法和Java语言类似，每个语句以<code>;</code>结束，语句块用<code>{...}</code>。但是，JavaScript并不强制要求在每个语句的结尾加<code>;</code>，浏览器中负责执行JavaScript代码的引擎会自动在每个语句的结尾补上<code>;</code>。<br>不过让JavaScript引擎自动加分号在某些情况下会改变程序的语义，导致运行结果与期望不一致。所以一般不省略<code>;</code>。</li>
+<li>JavaScript 对大小写是敏感的。</li>
+</ul>
+<h3 id="语句："><a href="#语句：" class="headerlink" title="语句："></a>语句：</h3><pre><code>var a = 1;           //赋值语句
+&quot;hello world&quot;;       //一行代码为一个字符串，也可以看作一个完整的语句。
+var b = 2; var c = 3;//一行代码包含两个语句，每个语句用 ; 表示结束。
+</code></pre><h3 id="代码块："><a href="#代码块：" class="headerlink" title="代码块："></a>代码块：</h3><pre><code>if(1){
+    x=1;
+    y=2;
+    z=3;
+}
+
+//代码块嵌套：
+if(1){
+    x=1;
+    if(x&gt;0){
+        y=2;
+        z=3;
+    }
+}
+
+</code></pre><h3 id="注释："><a href="#注释：" class="headerlink" title="注释："></a>注释：</h3><pre><code>//这是一个行注释
+
+/*
+这是一个块注释
+*/
+</code></pre><h3 id="对代码进行拆行："><a href="#对代码进行拆行：" class="headerlink" title="对代码进行拆行："></a>对代码进行拆行：</h3><pre><code>//可以在文本字符串中使用反斜杠对代码行进行换行。
+document.write(&quot;Hello \
+World!&quot;);
+
+//不过不能在非字符串处使用反斜杠进行拆行：
+document.write \
+(&quot;Hello World!&quot;);
+</code></pre><h3 id="条件判断："><a href="#条件判断：" class="headerlink" title="条件判断："></a>条件判断：</h3><p>JavaScript把null、undefined、0、NaN和空字符串’’视为false，其他值一概视为true，因此上述代码条件判断的结果是true。</p>
+<ul>
+<li>if else<br><code>`</code><br>if(条件){</li>
+</ul>
+<p>}else if(条件){</p>
+<p>}else{</p>
+<p>}</p>
+<pre><code>- switch
+</code></pre><p>switch(n)<br>{<br>case 1:<br>  执行代码块 1<br>  break;<br>case 2:<br>  执行代码块 2<br>  break;<br>default:<br>  n 与 case 1 和 case 2 不同时执行的代码<br>}</p>
+<pre><code>
+### 循环：
+- for循环。
+</code></pre><p>for (语句 1; 语句 2; 语句 3)<br>  {<br>  被执行的代码块<br>  }</p>
+<pre><code>语句 1 在循环（代码块）开始前执行
+
+语句 2 定义运行循环（代码块）的条件
+
+语句 3 在循环（代码块）已被执行之后执行
+
+- for..in 循环:  语句循环遍历对象的属性。
+</code></pre><p>for(x in 对象){<br>  被执行代码块<br>}</p>
+<pre><code>x为每一次遍历的属性名。
+
+- while循环
+</code></pre><p>while (条件)<br>  {<br>  需要执行的代码<br>  }</p>
+<pre><code>
+- do/while 循环
+</code></pre><p>do<br>  {<br>  需要执行的代码<br>  }<br>while (条件);<br><code>`</code></p>
+<h2 id="待补充："><a href="#待补充：" class="headerlink" title="待补充："></a>待补充：</h2><p><strong>use ‘strict’</strong>，”严格模式”是一种在JavaScript代码运行时自动实行更严格解析和错误处理的方法。这种模式使得Javascript在更严格的条件下运行。</p>
+<p>设立”严格模式”的优点：</p>
+<ol>
+<li>消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;</li>
+<li>消除代码运行的一些不安全之处，保证代码运行的安全；</li>
+<li><p>提高编译器效率，增加运行速度；</p>
+</li>
+<li><p>为未来新版本的Javascript做好铺垫。</p>
+</li>
+</ol>
+<p>注：经过测试 IE6,7,8,9 均不支持严格模式。</p>
+<p>缺点：<br>现在网站的 JS 都会进行压缩，一些文件用了严格模式，而另一些没有。这时这些本来是严格模式的文件，被 merge 后，这个串就到了文件的中间，不仅没有指示严格模式，反而在压缩后浪费了字节。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="http://link.hhtjim.com/163/5146554.mp3"></li>
+                    
+                        <li title="1" data-url="http://link.hhtjim.com/qq/001faIUs4M2zna.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci="" data-cs="" data-r="" data-o="" data-a="" data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":37.5,"height":75},"mobile":{"show":true}});</script></body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

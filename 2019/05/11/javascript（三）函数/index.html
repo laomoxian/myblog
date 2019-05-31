@@ -1,0 +1,337 @@
+
+<!DOCTYPE html>
+<html lang="" class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title></title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="ZIO,"> 
+    <meta name="description" content="
+
+"> 
+    <meta name="author" content="Jing"> 
+    <link rel="alternative" href="atom.xml" title="" type="application/atom+xml"> 
+    <link rel="icon" href="/img/blog.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+</html>
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">javascript学习笔记（三）</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">javascript学习笔记（三）</h1>
+        <div class="stuff">
+            <span>五月 11, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/js/">js</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="javascript（三）函数"><a href="#javascript（三）函数" class="headerlink" title="javascript（三）函数"></a>javascript（三）函数</h1><!-- TOC -->
+<ul>
+<li><a href="#javascript三函数">javascript（三）函数</a><ul>
+<li><a href="#函数的定义">函数的定义</a></li>
+<li><a href="#调用函数">调用函数</a></li>
+<li><a href="#变量的作用域">变量的作用域</a></li>
+<li><a href="#常量">常量</a></li>
+<li><a href="#解构赋值">解构赋值</a></li>
+<li><a href="#方法">方法</a></li>
+<li><a href="#高阶函数">高阶函数</a></li>
+<li><a href="#闭包">闭包</a></li>
+<li><a href="#箭头函数">箭头函数</a></li>
+<li><a href="#generator生成器">generator（生成器）</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h2 id="函数的定义"><a href="#函数的定义" class="headerlink" title="函数的定义"></a>函数的定义</h2><pre><code>function abs(x) {
+    if (x &gt;= 0) {
+        return x;
+    } else {
+        return -x;
+    }
+}
+</code></pre><pre><code>var abs = function (x) {
+    if (x &gt;= 0) {
+        return x;
+    } else {
+        return -x;
+    }
+};
+</code></pre><p>function (x) { … }是一个匿名函数，它没有函数名。但是，这个匿名函数赋值给了变量abs，所以，通过变量abs就可以调用该函数。</p>
+<h2 id="调用函数"><a href="#调用函数" class="headerlink" title="调用函数"></a>调用函数</h2><ul>
+<li>调用函数时，按顺序传入参数：<code>abc(1);</code></li>
+<li>由于JavaScript允许传入任意个参数而不影响调用，因此传入的参数比定义的参数多也没有问题，虽然函数内部并不需要这些参数。</li>
+<li>传入的参数比定义的少也没有问题，没有数据传入的参数将为<code>undefined</code></li>
+<li>利用<code>arguments</code>，可以获得调用者传入的所有参数。<code>arguments</code>通常也用来判断传入的参数数量。<br><code>`</code><br>function abs() {<br>  if (arguments.length === 0) {<pre><code>  return 0;
+</code></pre>  }<br>  var x = arguments[0];<br>  return x &gt;= 0 ? x : -x;<br>}</li>
+</ul>
+<p>abs(); // 0<br>abs(10); // 10<br>abs(-9); // 9</p>
+<pre><code>- 通过`arguments`实现可选参数。
+</code></pre><p>// foo(a[, b], c)<br>// 接收2~3个参数，b是可选参数，如果只传2个参数，b默认为null：<br>function foo(a, b, c) {<br>    if (arguments.length === 2) {<br>        // 实际拿到的参数是a和b，c为undefined<br>        c = b; // 把b赋给c<br>        b = null; // b变为默认值<br>    }<br>    // …<br>}</p>
+<pre><code>- rest参数
+
+通过`arguments`获取多输入的参数
+</code></pre><p>function foo(a, b) {<br>    var i, rest = [];<br>    if (arguments.length &gt; 2) {<br>        for (i = 2; i&lt;arguments.length; i++) {<br>            rest.push(arguments[i]);<br>        }<br>    }<br>    console.log(‘a = ‘ + a);<br>    console.log(‘b = ‘ + b);<br>    console.log(rest);<br>}</p>
+<pre><code>了获取除了已定义参数a、b之外的参数，我们不得不用·arguments·，并且循环要从索引2开始以便排除前两个参数，这种写法很别扭，只是为了获得额外的rest参数，ES6标准引入了rest参数，上面的函数可以改写为：
+</code></pre><p>function foo(a, b, …rest) {<br>    console.log(‘a = ‘ + a);<br>    console.log(‘b = ‘ + b);<br>    console.log(rest);<br>}</p>
+<p>foo(1, 2, 3, 4, 5);<br>// 结果:<br>// a = 1<br>// b = 2<br>// Array [ 3, 4, 5 ]</p>
+<p>foo(1);<br>// 结果:<br>// a = 1<br>// b = undefined<br>// Array []</p>
+<pre><code>
+- `return`陷阱
+
+javascript引擎有个机制，会自动在行末添加`;`，所以当写return语句时，有可能发生这种情况：
+</code></pre><p>function foo() {<br>    return                  //javascript引擎会在return后面自动补充;<br>        { name: ‘foo’ };<br>}</p>
+<p>foo(); // undefined</p>
+<pre><code>正确写法：
+</code></pre><p>function foo() {<br>    return { // 这里不会自动加分号，因为{表示语句尚未结束<br>        name: ‘foo’<br>    };<br>}</p>
+<pre><code>## 变量的作用域
+- 如果一个变量在函数体内部申明，则该变量的作用域为整个函数体；
+- 内部函数可以访问外部函数定义的变量，反过来不行；
+- JavaScript会先扫描整个函数体的语句，把所有申明的变量“提升”到函数顶部，但是只会提升变量的声明，不会提升变量的赋值；
+- 不在任何函数内定义的变量就具有全局作用域，JavaScript默认有一个全局对象window，全局作用域的变量实际上被绑定到window的一个属性；
+- 名字空间：全局变量会绑定到window上，不同的JavaScript文件如果使用了相同的全局变量，或者定义了相同名字的顶层函数，都会造成命名冲突，并且很难被发现。减少冲突的一个方法是把自己的所有变量和函数全部绑定到一个全局变量中；
+- 局部作用域：由于JavaScript的变量作用域实际上是函数内部，我们在for循环等语句块中是无法定义具有局部作用域的变量的，如：
+</code></pre><p>‘use strict’;</p>
+<p>function foo() {<br>    for (var i=0; i&lt;100; i++) {<br>        //<br>    }<br>    i += 100; // 仍然可以引用变量i<br>}</p>
+<pre><code>为了解决块级作用域，ES6引入了新的关键字let，用let替代var可以申明一个块级作用域的变量：
+</code></pre><p>‘use strict’;</p>
+<p>function foo() {<br>    var sum = 0;<br>    for (let i=0; i&lt;100; i++) {<br>        sum += i;<br>    }<br>    // SyntaxError:<br>    i += 1;<br>}</p>
+<pre><code>
+## 常量
+ES6之后才能定义常量，ES6之前只能通过用全部大写的一个变量来表示一个常量。
+
+ES6标准引入了新的关键字const来定义常量，const与let都具有块级作用域：
+</code></pre><p>‘use strict’;</p>
+<p>const PI = 3.14;<br>PI = 3; // 某些浏览器不报错，但是无效果！<br>PI; // 3.14</p>
+<pre><code>
+## 解构赋值
+从ES6开始，JavaScript引入了解构赋值，可以同时对一组变量进行赋值：
+</code></pre><p>var [x, y, z] = [‘hello’, ‘JavaScript’, ‘ES6’];<br>let [x, [y, z]] = [‘hello’, [‘JavaScript’, ‘ES6’]]; //注意嵌套层次和位置要保持一致<br>let [, , z] = [‘hello’, ‘JavaScript’, ‘ES6’]; // 忽略前两个元素，只对z赋值第三个元素</p>
+<pre><code>对象的解构赋值：
+</code></pre><p>var person = {<br>    name: ‘小明’,<br>    age: 20,<br>    gender: ‘male’,<br>    passport: ‘G-12345678’,<br>    school: ‘No.4 middle school’<br>};<br>var {name, age, passport} = person;</p>
+<p>//对一个对象进行解构赋值时，同样可以直接对嵌套的对象属性进行赋值，只要保证对应的层次是一致的：<br>var person = {<br>    name: ‘小明’,<br>    age: 20,<br>    gender: ‘male’,<br>    passport: ‘G-12345678’,<br>    school: ‘No.4 middle school’,<br>    address: {<br>        city: ‘Beijing’,<br>        street: ‘No.1 Road’,<br>        zipcode: ‘100001’<br>    }<br>};<br>var {name, address: {city, zip}} = person;</p>
+<p>//使用解构赋值对对象属性进行赋值时，如果对应的属性不存在，变量将被赋值为undefined</p>
+<p>//解构赋值还可以使用默认值，这样就避免了不存在的属性返回undefined的问题：<br>var person = {<br>    name: ‘小明’,<br>    age: 20,<br>    gender: ‘male’,<br>    passport: ‘G-12345678’<br>};<br>var {name, single=true} = person;<br>name; // ‘小明’<br>single; // true</p>
+<p>//有些时候，如果变量已经被声明了，再次赋值的时候，正确的写法也会报语法错误：<br>// 声明变量:<br>var x, y;<br>// 解构赋值:<br>{x, y} = { name: ‘小明’, x: 100, y: 200};<br>// 语法错误: Uncaught SyntaxError: Unexpected token =<br>//因为JavaScript引擎把{开头的语句当作了块处理，于是=不再合法。解决方法是用小括号括起来：<br>({x, y} = { name: ‘小明’, x: 100, y: 200});</p>
+<pre><code>结构赋值的使用：
+</code></pre><p>//交换两个变量x和y的值<br>var x=1, y=2;<br>[x, y] = [y, x]</p>
+<p>//快速获取当前页面的域名和路径：<br>var {hostname:domain, pathname:path} = location;</p>
+<p>//如果一个函数接收一个对象作为参数，那么，可以使用解构直接把对象的属性绑定到变量中。例如，下面的函数可以快速创建一个Date对象：<br>function buildDate({year, month, day, hour=0, minute=0, second=0}) {<br>    return new<br>     Date(year + ‘-‘ + month + ‘-‘ + day + ‘ ‘ + hour + ‘:’ + minute + ‘:’ + second);<br>}<br>//它的方便之处在于传入的对象只需要year、month和day这三个属性：<br>buildDate({ year: 2017, month: 1, day: 1 });<br>// Sun Jan 01 2017 00:00:00 GMT+0800 (CST)</p>
+<p>//也可以传入hour、minute和second属性：<br>buildDate({ year: 2017, month: 1, day: 1, hour: 20, minute: 15 });<br>// Sun Jan 01 2017 20:15:00 GMT+0800 (CST)</p>
+<pre><code>
+## 方法
+在一个对象中绑定函数，称为这个对象的方法。
+</code></pre><p>①<br>var xiaoming = {<br>    name: ‘小明’,<br>    birth: 1990,<br>    age: function () {<br>        var y = new Date().getFullYear();<br>        return y - this.birth;<br>    }<br>};<br>xiaoming.age; // function xiaoming.age()<br>xiaoming.age(); // 今年调用是25,明年调用就变成26了</p>
+<p>②<br>function getAge() {<br>    var y = new Date().getFullYear();<br>    return y - this.birth;<br>}</p>
+<p>var xiaoming = {<br>    name: ‘小明’,<br>    birth: 1990,<br>    age: getAge<br>};</p>
+<p>xiaoming.age(); // 25, 正常结果<br>getAge(); // NaN</p>
+<pre><code>如果使用第二种情况绑定函数，直接调用getAge()时，函数中的this会指向window的属性，如果没有这个属性则会获得`undefined`。解决方法：
+</code></pre><p>使用apply：<br>function getAge() {<br>    var y = new Date().getFullYear();<br>    return y - this.birth;<br>}</p>
+<p>var xiaoming = {<br>    name: ‘小明’,<br>    birth: 1990,<br>    age: getAge<br>};</p>
+<p>xiaoming.age(); // 25<br>getAge.apply(xiaoming, []); // 25, this指向xiaoming, 参数为空</p>
+<pre><code>
+
+## 高阶函数
+&gt; 一个函数接收另一个函数作为参数，这种函数就称之为高阶函数。
+- 一个简单的例子：
+</code></pre><p>function add(x, y, f) {<br>    return f(x) + f(y);<br>}</p>
+<pre><code>- map/reduce
+&gt; map/reduce 的概念：[MapReduce](https://baike.baidu.com/item/MapReduce/133425?fr=aladdin)，map为映射，reduce为规约。
+
+map:
+</code></pre><p>‘use strict’;</p>
+<p>function pow(x) {<br>    return x * x;<br>}<br>var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];<br>var results = arr.map(pow); // [1, 4, 9, 16, 25, 36, 49, 64, 81]</p>
+<p>//把Array的所有数字转为字符串：<br>var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];<br>arr.map(String); // [‘1’, ‘2’, ‘3’, ‘4’, ‘5’, ‘6’, ‘7’, ‘8’, ‘9’]</p>
+<pre><code>
+reduce：
+</code></pre><p>[x1, x2, x3, x4].reduce(f) = f(f(f(x1, x2), x3), x4)</p>
+<p>//example<br>var arr = [1, 3, 5, 7, 9];<br>arr.reduce(function (x, y) {<br>    return x + y;<br>}); // 25</p>
+<pre><code>
+- filter
+&gt; filter用于把Array的某些元素过滤掉，然后返回剩下的元素。filter通过传入的函数来作用Array得到每一个元素，然后根据返回值是true或者是false来判断是否过滤掉该元素。
+
+例子：
+</code></pre><p>//过滤掉数组中的偶数<br>var arr = [1, 2, 4, 5, 6, 9, 10, 15];<br>var r = arr.filter(function (x) {<br>    return x % 2 !== 0;<br>});<br>r; // [1, 5, 9, 15]</p>
+<pre><code>回调函数相关：
+</code></pre><p>//filter()接收的回调函数，其实可以有多个参数。通常我们仅使用第一个参数，表示Array的某个元素。回调函数还可以接收另外两个参数，表示元素的位置和数组本身：<br>var arr = [‘A’, ‘B’, ‘C’];<br>var r = arr.filter(function (element, index, self) {<br>    console.log(element); // 依次打印’A’, ‘B’, ‘C’<br>    console.log(index); // 依次打印0, 1, 2<br>    console.log(self); // self就是变量arr<br>    return true;<br>});</p>
+<pre><code>
+- sort
+&gt; sort()方法也是一个高阶函数，它还可以接收一个比较函数来实现自定义的排序。
+例子：
+</code></pre><p>//按照字母顺序比较，原来是按照ASCII的大小比较<br>var arr = [‘Google’, ‘apple’, ‘Microsoft’];<br>arr.sort(function (s1, s2) {<br>    x1 = s1.toUpperCase();<br>    x2 = s2.toUpperCase();<br>    if (x1 &lt; x2) {<br>        return -1;<br>    }<br>    if (x1 &gt; x2) {<br>        return 1;<br>    }<br>    return 0;<br>}); // [‘apple’, ‘Google’, ‘Microsoft’]</p>
+<pre><code>
+- every
+&gt; every()方法可以判断数组的所有元素是否满足测试条件。
+
+- find和findIndex
+&gt; find()方法用于查找符合条件的第一个元素，如果找到了，返回这个元素，否则，返回undefined.
+
+&gt;findIndex()和find()类似，也是查找符合条件的第一个元素，不同之处在于findIndex()会返回这个元素的索引，如果没有找到，返回-1：
+
+- forEach
+&gt; forEach()和map()类似，它也把每个元素依次作用于传入的函数，但不会返回新的数组。forEach()常用于遍历数组，因此，传入的函数不需要返回值：
+</code></pre><p>var arr = [‘Apple’, ‘pear’, ‘orange’];<br>arr.forEach(console.log); // 依次打印每个元素</p>
+<pre><code>
+## 闭包
+&gt; 可以简单理解为：定义在一个函数内部的函数。
+
+作用：
+- 读取函数内部变量；
+</code></pre><p>funtion A(){<br>    var x = 1;<br>    funtion B(){<br>        console.log(x);<br>    }<br>    return B;<br>}</p>
+<p>var test = A();<br>test();</p>
+<pre><code>- 让变量始终保持在内存中；
+&gt; 在 Javascript 中，如果一个对象不再被引用，那么这个对象就会被 GC 回收，否则这个对象一直会保存在内存中。
+在下面例子中，n是函数C的内部变量。通过闭包，n的状态被保留了，每一次调用都是在上一次调用的基础上进行计算。从中可以看到，闭包D使得函数C的内部环境，一直存在。
+
+&gt; **闭包可以看作是函数内部作用域的一个接口。**
+</code></pre><p>funtion C(n){<br>    funtion D(){<br>        n++;<br>    }<br>    return D;<br>}<br>var test = C(3);<br>test();      //4<br>test();      //5<br>test();      //6</p>
+<pre><code>
+- 封装对象的私有属性和私有方法；
+</code></pre><p>function Person(name) {<br>  var _age;<br>  function setAge(n) {<br>    _age = n;<br>  }<br>  function getAge() {<br>    return _age;<br>  }</p>
+<p>  return {<br>    name: name,<br>    getAge: getAge,<br>    setAge: setAge<br>  };<br>}</p>
+<p>var p1 = Person(‘张三’);<br>p1.setAge(25);<br>p1.getAge() // 25</p>
+<pre><code>- 等等。
+
+
+## 箭头函数
+&gt; 箭头函数（Arrow Function）是ES6新增的一种新的函数。箭头函数相当于匿名函数，并且简化了函数定义。
+
+&gt; 箭头函数完全修复了this的指向，this总是指向词法作用域，也就是外层调用者obj；同时用call()或者apply()调用箭头函数时，无法对this进行绑定。
+
+例子：
+</code></pre><p>x =&gt; x <em> x;<br>//相当于：<br>function (x) {<br>    return x </em> x;<br>}</p>
+<p>//多语句且有return值：<br>x =&gt; {<br>    if (x &gt; 0) {<br>        return x <em> x;<br>    }<br>    else {<br>        return - x </em> x;<br>    }<br>}</p>
+<p>//参数<br>// 两个参数:<br>(x, y) =&gt; x <em> x + y </em> y</p>
+<p>// 无参数:<br>() =&gt; 3.14</p>
+<p>// 可变参数:<br>(x, y, …rest) =&gt; {<br>    var i, sum = x + y;<br>    for (i=0; i&lt;rest.length; i++) {<br>        sum += rest[i];<br>    }<br>    return sum;<br>}</p>
+<p>//返回一个对象<br>// SyntaxError:<br>x =&gt; { foo: x }<br>因为和函数体的{ … }有语法冲突，所以要改为：<br>x =&gt; ({ foo: x });</p>
+<pre><code>
+## generator（生成器）
+&gt; generator（生成器）是ES6标准引入的新的数据类型。一个generator看上去像一个函数，但可以返回多次。
+- generator的定义：`funtion* name(){}` ;
+- generator和函数不同的是，除了return语句，还可以用yield返回多次.
+- 可以看作是一个可以记住执行状态的函数；
+
+以斐波那契数列为例：
+</code></pre><p>function* fib(max) {<br>    var<br>        t,<br>        a = 0,<br>        b = 1,<br>        n = 0;<br>    while (n &lt; max) {<br>        yield a;<br>        [a, b] = [b, a + b];<br>        n ++;<br>    }<br>    return;<br>}</p>
+<pre><code>- 调用generator
+&gt; next()方法会执行generator的代码，然后，每次遇到yield x;就返回一个对象{value: x, done: true/false}，然后“暂停”。返回的value就是yield的返回值，done表示这个generator是否已经执行结束了。如果done为true，则value就是return的返回值。
+</code></pre><p>//使用next()方法<br>var f = fib(5);   //创建generator对象<br>f.next(); // {value: 0, done: false}<br>f.next(); // {value: 1, done: false}<br>f.next(); // {value: 1, done: false}<br>f.next(); // {value: 2, done: false}<br>f.next(); // {value: 3, done: false}<br>f.next(); // {value: undefined, done: true}</p>
+<p>//使用for…of<br>for (var x of fib(10)) {<br>    console.log(x); // 依次输出0, 1, 1, 2, 3, …<br>}</p>
+<p><code>`</code></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="http://link.hhtjim.com/163/5146554.mp3"></li>
+                    
+                        <li title="1" data-url="http://link.hhtjim.com/qq/001faIUs4M2zna.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci="" data-cs="" data-r="" data-o="" data-a="" data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":37.5,"height":75},"mobile":{"show":true}});</script></body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

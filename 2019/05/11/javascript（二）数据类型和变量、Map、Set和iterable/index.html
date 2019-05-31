@@ -1,0 +1,368 @@
+
+<!DOCTYPE html>
+<html lang="" class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title></title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="ZIO,"> 
+    <meta name="description" content="
+
+"> 
+    <meta name="author" content="Jing"> 
+    <link rel="alternative" href="atom.xml" title="" type="application/atom+xml"> 
+    <link rel="icon" href="/img/blog.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+</html>
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">javascript学习笔记（二）</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">javascript学习笔记（二）</h1>
+        <div class="stuff">
+            <span>五月 11, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/js/">js</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="javascript（二）数据类型和变量、Map、Set和iterable"><a href="#javascript（二）数据类型和变量、Map、Set和iterable" class="headerlink" title="javascript（二）数据类型和变量、Map、Set和iterable"></a>javascript（二）数据类型和变量、Map、Set和iterable</h1><!-- TOC -->
+<ul>
+<li><a href="#javascript二数据类型和变量mapset和iterable">javascript（二）数据类型和变量、Map、Set和iterable</a><ul>
+<li><a href="#数据类型">数据类型</a><ul>
+<li><a href="#number">Number</a></li>
+<li><a href="#字符串">字符串</a></li>
+<li><a href="#布尔值">布尔值</a></li>
+<li><a href="#null和undefined">null和undefined</a></li>
+<li><a href="#数组">数组</a></li>
+<li><a href="#对象">对象</a></li>
+</ul>
+</li>
+<li><a href="#变量">变量</a></li>
+<li><a href="#mapset和iterable">Map、Set和iterable</a><ul>
+<li><a href="#map">Map</a></li>
+<li><a href="#set">Set</a></li>
+<li><a href="#iterable">iterable</a></li>
+<li><a href="#forin-与-forof">for…in 与 for…of</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h3><ul>
+<li>JavaScript不区分整数和浮点数，统一用Number表示，以下都是合法的Number类型：<pre><code>123; 
+0.456; 
+1.2345e3; // 科学计数法表示1.2345x1000，等同于1234.5
+-99; 
+NaN; // NaN表示Not a Number，当无法计算结果时用NaN表示
+Infinity; // Infinity表示无限大，当数值超过了JavaScript的Number所能表示的最大值时，就表示为Infinity
+</code></pre></li>
+<li>十六进制表示使用0x前缀，如：<code>0x110</code></li>
+<li>Number的四则运算<pre><code>1 + 2; // 3
+(1 + 2) * 5 / 2; // 7.5
+2 / 0; // Infinity
+0 / 0; // NaN
+10 % 3; // 1
+10.5 % 3; // 1.5
+</code></pre><h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3></li>
+<li>字符串是以单引号’或双引号”括起来的任意文本,如：<code>&quot;hello&quot;;&#39;hi&#39;;</code></li>
+<li>多行字符串，用 ` ` （反引号）表示，如：<pre><code>`
+多
+行
+字符串
+`
+</code></pre></li>
+<li>字符拼接，用<code>+</code>号。</li>
+<li><strong>需要注意</strong>,字符串是不可变的，如果对字符串的某个索引赋值，不会有任何错误，但是，也没有任何效果：<pre><code>var s = &#39;Test&#39;;
+s[0] = &#39;X&#39;;
+alert(s); // s仍然为&#39;Test&#39;
+</code></pre></li>
+<li>字符串常见操作：<pre><code>var a = &quot;hello world&quot;;
+a.length; //长度
+a[0];     //通过索引获得指定字符
+a.toUpperCase(); //返回全部大写的字符串
+a.toLowerCase(); //返回全部小写的字符串
+a.substring(0, 5); // 从索引0开始到5（不包括5），返回&#39;hello&#39;
+a.substring(7); // 从索引7开始到结束，返回&#39;world&#39;
+</code></pre><h3 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h3></li>
+<li>true</li>
+<li>false</li>
+</ul>
+<p>逻辑运算和比较运算的结果也是布尔值。</p>
+<p>逻辑运算符：</p>
+<pre><code>&amp;&amp;  与运算
+||  或运算
+!   非运算
+</code></pre><p>比较运算符</p>
+<pre><code>&gt;
+&lt;
+&gt;=
+&lt;=
+==    会自动转换数据类型再比较，很多时候，会得到非常诡异的结果；
+===   不会自动转换数据类型，如果数据类型不一致，返回false，如果一致，再比较。
+</code></pre><p>NaN这个特殊的Number与所有其他值都不相等，包括它自己，唯一能判断NaN的方法是通过isNaN()函数：</p>
+<pre><code>NaN === NaN; // false
+isNaN(NaN); // true
+</code></pre><p>浮点数的相等比较：<br>浮点数在运算过程中会产生误差，因为计算机无法精确表示无限循环小数。要比较两个浮点数是否相等，只能计算它们之差的绝对值，看是否小于某个阈值：</p>
+<pre><code>1 / 3 === (1 - 2 / 3); // false
+Math.abs(1 / 3 - (1 - 2 / 3)) &lt; 0.0000001; // true
+</code></pre><h3 id="null和undefined"><a href="#null和undefined" class="headerlink" title="null和undefined"></a>null和undefined</h3><ul>
+<li>null表示一个“空”的值，它和0以及空字符串’’不同，0是一个数值，’’表示长度为0的字符串，而null表示“空”。</li>
+<li>undefined与null类似，表示“未定义”。</li>
+<li>大多数情况下用null。undefined仅仅在判断函数参数是否传递的情况下有用。<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3></li>
+<li><p>数组是一组按顺序排列的集合，集合的每个值称为元素。</p>
+</li>
+<li><p><strong>JavaScript的数组可以包括任意数据类型。</strong></p>
+</li>
+<li><p>创建数组的方法（元素之间用<code>,</code>隔开）：</p>
+<ul>
+<li>使用中括号[]创建：<code>var arr = [1,2,3,4,&#39;hello&#39;,null]</code>;</li>
+<li>通过Array()函数创建：<code>var arr = new Array(1,2,3);</code></li>
+</ul>
+</li>
+<li><p>索引：数组的元素可以通过索引来访问，起始值为0，与其他语言相似。</p>
+</li>
+<li><p>要取得Array的长度，可以通过直接访问length属性，如果对length<br>属性进行赋值，会改变数组的长度。</p>
+<pre><code>var arr = [1, 2, 3.14, &#39;Hello&#39;, null, true];
+arr.length; // 6
+arr.length = 2;
+arr; // arr变为[1, 2]
+arr.length = 4;
+arr; // arr变为[1, 2, empty * 2]
+</code></pre></li>
+<li><p>数组常用函数：</p>
+<ul>
+<li><code>indexOf()</code>,搜索一个指定的元素的位置。</li>
+<li><code>slice()</code>,对应String的substring(),截取Array的部分元素，然后返回一个新的Array。</li>
+<li><code>push和pop</code>，push()向Array的末尾添加若干元素，pop()则把Array的最后一个元素删除掉。</li>
+<li><code>unshift和shift</code>，如果要往Array的头部添加若干元素，使用unshift()方法，shift()方法则把Array的第一个元素删掉。</li>
+<li><code>sort()</code>,对当前Array进行排序，它会直接修改当前Array的元素位置，直接调用时，按照默认顺序排序。</li>
+<li><code>reverse()</code>,把整个Array的元素给反转。</li>
+<li><code>splice()</code>方法是修改Array的“万能方法”，它可以从指定的索引开始删除若干元素，然后再从该位置添加若干元素。</li>
+<li><code>concat()</code>,把当前的Array和另一个Array连接起来，并返回一个新的Array：</li>
+<li><code>join()</code>,是一个非常实用的方法，它把当前Array的每个元素都用指定的字符串连接起来，然后返回连接后的字符串：</li>
+</ul>
+</li>
+<li><p><strong>多维数组</strong>:如果数组的某个元素又是一个Array，则可以形成多维数组，例如：<br><code>var arr = [[1, 2, 3], [400, 500, 600], &#39;-&#39;];</code></p>
+</li>
+</ul>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><ul>
+<li>JavaScript用一个<code>{...}</code>表示一个对象，键值对以<code>xxx: xxx</code>形式申明，用<code>,</code>隔开。注意，最后一个键值对不需要在末尾加<code>,</code>，如果加了，有的浏览器（如低版本的IE）将报错。<pre><code>var xiaoming = {
+  name: &#39;小明&#39;,
+  birth: 1990,
+  school: &#39;No.1 Middle School&#39;,
+  height: 1.70,
+  weight: 65,
+  score: null
+};
+</code></pre></li>
+<li><p>对象属性的调用，使用<code>对象名.属性名</code>的方式，如<code>person.name</code>，这种方式要求属性名必须是一个有效的变量名。</p>
+</li>
+<li><p>如果属性名包含特殊字符，就必须用<code>&#39; &#39;</code>括起来，如：</p>
+<pre><code>var xiaohong = {
+  name: &#39;小红&#39;,
+  &#39;middle-school&#39;: &#39;No.1 Middle School&#39;
+};
+</code></pre><p>xiaohong的属性名middle-school不是一个有效的变量，就需要用’’括起来。访问这个属性也无法使用.操作符，必须用[‘xxx’]来访问，如：<code>xiaohong[&#39;middle-school&#39;];</code><br><br>也可以用<code>xiaohong[&#39;name&#39;]</code>来访问xiaohong的name属性,不过<code>xiaohong.name</code>的写法更简洁。<br></p>
+</li>
+<li><p>我们在编写JavaScript代码的时候，属性名尽量使用标准的变量名，这样就可以直接通过object.prop的形式访问一个属性了。</p>
+</li>
+<li><p>由于JavaScript的对象是动态类型，可以自由地给一个对象添加或删除属性：</p>
+<pre><code>var xiaoming = {
+  name: &#39;小明&#39;
+};
+xiaoming.age; // undefined
+xiaoming.age = 18; // 新增一个age属性
+xiaoming.age; // 18
+delete xiaoming.age; // 删除age属性
+xiaoming.age; // undefined
+delete xiaoming[&#39;name&#39;]; // 删除name属性
+xiaoming.name; // undefined
+delete xiaoming.school; // 删除一个不存在的school属性也不会报错
+</code></pre></li>
+<li>如果我们要检测xiaoming是否拥有某一属性，可以用in操作符：<br><code>`</code><br>var xiaoming = {<br>  name: ‘小明’,<br>  birth: 1990,<br>  school: ‘No.1 Middle School’,<br>  height: 1.70,<br>  weight: 65,<br>  score: null<br>};<br>‘name’ in xiaoming; // true<br>‘grade’ in xiaoming; // false</li>
+</ul>
+<p>‘toString’ in xiaoming; // true ,如果in判断一个属性存在，这个属性不一定是xiaoming的，它可能是xiaoming继承得到的,toString定义在object对象中，而所有对象最终都会在原型链上指向object，所以xiaoming也拥有toString属性。</p>
+<pre><code>- 要判断一个属性是否是xiaoming自身拥有的，而不是继承得到的，可以用**hasOwnProperty()** 方法：`xiaoming.hasOwnProperty(&#39;name&#39;); // true`
+
+
+
+## 变量
+- 变量名规范；大小写英文、数字、$和_的组合，且不能用数字开头；不能是javascript的关键字。
+- 使用var进行变量声明，如：`var a;`
+
+在JavaScript中，使用等号=对变量进行赋值。可以把任意数据类型赋值给变量，同一个变量可以反复赋值，而且可以是不同类型的变量，但是要注意只能用var申明一次，例如：
+</code></pre><p>var a = 1;<br>a = “hello”;</p>
+<pre><code>这种变量本身类型不固定的语言称之为**动态语言**，与之对应的是静态语言。静态语言在定义变量时必须指定变量类型，如果赋值的时候类型不匹配，就会报错。
+
+## Map、Set和iterable
+
+- Map和Set是ES6标准新增的数据类型，请根据浏览器的支持情况决定是否要使用。
+- 测试浏览器是否支持ES6规范：
+</code></pre><p>‘use strict’;<br>var m = new Map();<br>var s = new Set();<br>console.log(‘你的浏览器支持Map和Set！’);<br>//如果浏览器报ReferenceError错误，则说明浏览器不支持ES6规范。</p>
+<pre><code>
+### Map
+&gt; javascript中本对象可以视为其他语言中的map，但是对象的属性命名要求只能是字符串，但是其他数据类型诸如number等作为map的键也是很合理的，所以为了解决这个问题，最新的ES6规范引入了新的数据类型Map。
+- Map是一组键值对的结构，具有极快的查找速度。
+
+</code></pre><p>var m = new Map([[‘Michael’, 95], [‘Bob’, 75], [‘Tracy’, 85]]);<br>m.get(‘Michael’); // 95</p>
+<pre><code>- 初始化Map需要一个二维数组，或者直接初始化一个空Map。
+</code></pre><p>var m = new Map([[‘Michael’, 95], [‘Bob’, 75], [‘Tracy’, 85]]);<br>m.get(‘Michael’); //二维数组创建</p>
+<p>var m = new Map(); // 空Map<br>m.set(‘Adam’, 67); // 添加新的key-value<br>m.set(‘Bob’, 59);<br>m.has(‘Adam’); // 是否存在key ‘Adam’: true<br>m.get(‘Adam’); // 67<br>m.delete(‘Adam’); // 删除key ‘Adam’<br>m.get(‘Adam’); // undefined</p>
+<pre><code>
+- 因为一个key只能对应一个value，当多次对一个key放入value时，会替换掉原来的value。
+</code></pre><p>var m = new Map();<br>m.set(‘Adam’, 67);<br>m.set(‘Adam’, 88);<br>m.get(‘Adam’); // 88</p>
+<pre><code>
+### Set
+- Set和Map类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在Set中，没有重复的key。
+
+- 要创建一个Set，需要提供一个Array作为输入，或者直接创建一个空Set.
+</code></pre><p>var s1 = new Set(); // 空Set<br>var s2 = new Set([1, 2, 3]); // 含1, 2, 3</p>
+<pre><code>
+- Set中不会有重复的元素，重复的元素会被自动过滤。
+</code></pre><p>var s = new Set([1,2,3,3]);<br>s;    // Set [1,2,3]</p>
+<pre><code>
+- add(key)方法可以添加元素，重复的元素会自动过滤；delete(key)方法可以删除元素。
+
+### iterable
+&gt; 遍历Array可以采用下标循环，遍历Map和Set就无法使用下标。为了统一集合类型，ES6标准引入了新的iterable类型，Array、Map和Set都属于iterable类型。
+具有iterable类型的集合可以通过新的for ... of循环来遍历。(类似于JAVA中的for each)
+
+- 测试浏览器是否支持`for...of`:
+</code></pre><p>‘use strict’;<br>var a = [1, 2, 3];<br>for (var x of a) {<br>}<br>console.log(‘你的浏览器支持for … of’);</p>
+<pre><code>
+- 用for ... of循环遍历Array、MAP和Set：
+</code></pre><p>var a = [‘A’, ‘B’, ‘C’];<br>var s = new Set([‘A’, ‘B’, ‘C’]);<br>var m = new Map([[1, ‘x’], [2, ‘y’], [3, ‘z’]]);<br>for (var x of a) { // 遍历Array<br>    console.log(x);<br>}<br>for (var x of s) { // 遍历Set<br>    console.log(x);<br>}<br>for (var x of m) { // 遍历Map<br>    console.log(x[0] + ‘=’ + x[1]);<br>}</p>
+<pre><code>
+- 更好的方式是使用iterable内置的forEach方法，它接收一个函数，每次迭代就自动回调该函数。forEach()方法是ES5.1标准引入的，需要测试浏览器是否支持。
+
+1. Array，回调函数的参数为element、index、array：
+</code></pre><p>‘use strict’;<br>var a = [‘A’, ‘B’, ‘C’];<br>a.forEach(function (element, index, array) {<br>    // element: 指向当前元素的值<br>    // index: 指向当前索引<br>    // array: 指向Array对象本身<br>    console.log(element + ‘, index = ‘ + index);<br>});</p>
+<pre><code>2. Set，回调函数的参数为element、sameElement、set：
+</code></pre><p>var s = new Set([‘A’, ‘B’, ‘C’]);<br>s.forEach(function (element, sameElement, set) {<br>    // element,sameElent: 指向当前元素的值<br>    // set: 指向Set对象本身<br>    console.log(element);<br>});</p>
+<pre><code>
+3. Map，回调函数参数依次为value、key、map
+</code></pre><p>var m = new Map([[1, ‘x’], [2, ‘y’], [3, ‘z’]]);<br>m.forEach(function (value, key, map) {<br>    console.log(value);<br>});<br><code>`</code></p>
+<ul>
+<li>如果对某些参数不感兴趣，由于JavaScript的函数调用不要求参数必须一致，因此可以忽略它们。</li>
+</ul>
+<p><strong>扩展：</strong> </p>
+<h3 id="for…in-与-for…of"><a href="#for…in-与-for…of" class="headerlink" title="for…in 与 for…of"></a>for…in 与 for…of</h3><p>for … in循环由于历史遗留问题，遍历的实际上是对象的属性名称。一个Array数组实际上也是一个对象，它的每个元素的索引被视为一个属性。<br>当我们手动给Array对象添加了额外的属性后，循环将把额外的属性包括在内，但Array的length属性却不包括在内。</p>
+<p>for … of循环则只循环集合本身的元素，不会循环额外添加的属性。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="http://link.hhtjim.com/163/5146554.mp3"></li>
+                    
+                        <li title="1" data-url="http://link.hhtjim.com/qq/001faIUs4M2zna.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci="" data-cs="" data-r="" data-o="" data-a="" data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":37.5,"height":75},"mobile":{"show":true}});</script></body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
